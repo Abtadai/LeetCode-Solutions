@@ -1,0 +1,26 @@
+/* 
+Leetcode 53 - Maximum Subarray
+Apporach :
+Iterate through every element ans keep track of currSum and maxSum.
+if currSum is less than zero than initialize currSum to zero.
+Time Coplexity :
+O(n) - iterating through every element.
+
+Space Complexity :
+O(1) - Not using any extra space to store anything .
+
+*/
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxsum = INT_MIN;
+        int sum = 0;
+        for(int val : nums){
+            sum += val;
+            maxsum = max(maxsum, sum);
+            if(sum < 0) sum = 0;
+        }
+        return maxsum;
+    }
+};
