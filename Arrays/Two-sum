@@ -1,0 +1,38 @@
+/* 
+Leetcode -> 1. Two Sum 
+Apporach : 
+The problem requires finding two indices such that the sum of their corresponding values equals the given target.
+
+We iterate through the array once while maintaining an unordered_map that stores each number and its index.
+For every element nums[i], we compute its complement as target - nums[i].
+
+If the complement already exists in the map, we have found the required pair and return the stored index along with i.
+
+Otherwise, we store the current number and its index in the map for future lookups.
+
+This approach works efficiently because hash map lookups are performed in constant time on average.
+*/
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n = nums.size();
+        unordered_map<int, int> mp;
+        for(int i=0; i < n; i++){
+            int compliment = target - nums[i];
+            if(mp.find(compliment) != mp.end()){
+                return {mp[compliment] , i};
+            }
+            mp[nums[i]] = i;
+        }
+        return {};
+    }
+};
+
+
+Time complexity :
+-->  O(n) --- each element is processed once
+
+Space complexity :
+--> O(n) --- extra space used by the hash map
