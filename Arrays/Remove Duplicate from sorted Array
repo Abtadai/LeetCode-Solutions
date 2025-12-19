@@ -1,0 +1,30 @@
+/*
+
+Leetcode 26 : Remove Duplicate from sorted array.
+
+Apporach : use two pointer.
+point first pointer to first apperance of number and,
+move second pointer until it get not equal element and then update (first + 1 )  to second pointer by not equal value,
+do this for every element.
+
+Time Complexity : O(n)  // Because we iterating through every element  once.
+
+Space complexity : O(1)   // we are not using any extra space to store updated array.
+
+*/
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n = nums.size();
+        int i = 0;
+        for(int j = 1; j < n; j++){
+            if(nums[j] != nums[j-1]){
+                nums[i+1] = nums[j];
+                i++;
+            }
+        }
+        return i+1;
+    }
+};
+
