@@ -1,0 +1,25 @@
+/*
+Leetcode 121 : Best time to buy and sell stock.
+Apporach : Iterate through array and, 
+keep track of minimum price and keep update maxmimum profit.
+
+Time Complexity : O(n)
+Space Complexity : O(1)
+
+*/
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int maxprofit = 0;
+        int price = prices[0];  
+
+        for(int i =0; i < prices.size(); i++){
+            int cost = prices[i] - price;
+            maxprofit = max(maxprofit, cost);
+            price = min(price, prices[i]);
+        }
+
+        return maxprofit;
+    }
+};
