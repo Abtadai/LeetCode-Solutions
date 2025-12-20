@@ -1,0 +1,24 @@
+/* 
+Leetcode 217 : Contains Duplicates.
+
+Apporach :  As you traverse the array, store each element in a hash set.
+            If you encounter an element that is already in the set → duplicate found.
+
+Time Complexity : O(n) 
+Spacce Complexity : O(n).
+
+*/
+
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_set<int> seen;
+
+        for(int x : nums){
+            if(seen.count(x)) return true;
+            seen.insert(x);
+        }
+
+        return false;
+    }
+};
