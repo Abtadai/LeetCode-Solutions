@@ -1,0 +1,27 @@
+/* 
+Leetcode 169 : Majority element.
+
+Apporach : As you traverse the array, store each element in a Hash Map.
+           If you find a element's frequency is more than (n / 2 ) than consider it as a majority element.
+
+Time Complexity : O(n).
+Space Complexity : O(n).
+
+*/
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        unordered_map<int, int> mp;
+        for(auto val : nums){
+            mp[val]++;
+        }
+        for(auto it : mp){
+            if(it.second > n/2){
+                return {it.first};
+            }
+        }
+        return {};
+    }
+};
