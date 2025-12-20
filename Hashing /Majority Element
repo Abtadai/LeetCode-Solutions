@@ -1,27 +1,32 @@
 /* 
 Leetcode 169 : Majority element.
 
-Apporach : As you traverse the array, store each element in a Hash Map.
-           If you find a element's frequency is more than (n / 2 ) than consider it as a majority element.
+Apporach : Boyer–Moore Majority Vote Algorithm
+
+Key Idea : 
+If an element appears more than n/2 times, it will survive pair cancelation.
+Maintain a candidate
+Maintain a count
+Increase count when you see the same element
+Decrease when you see a different one
+When count becomes zero, choose a new candidate
+
+Time and Space :
 
 Time Complexity : O(n).
-Space Complexity : O(n).
+Space Complexity : O(1).
 
 */
 
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int n = nums.size();
-        unordered_map<int, int> mp;
-        for(auto val : nums){
-            mp[val]++;
+        int count = 0;
+        int candidate = 0;
+        for(auto num : nums){
+           if(count == 0 ) candidate = num;
+           count += (num == candidate) ? 1 : -1;
         }
-        for(auto it : mp){
-            if(it.second > n/2){
-                return {it.first};
-            }
-        }
-        return {};
+        return candidate;
     }
 };
