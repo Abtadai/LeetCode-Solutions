@@ -1,0 +1,27 @@
+/*  
+Leetcode 283 : Move Zeroes to end.
+
+Apporach : 
+A two-pointer approach could be helpful here. 
+The idea would be to have one pointer for iterating the array and,
+another pointer that just works on the non-zero elements of the array.
+
+
+Time complexity : O(n)
+
+Space complexity : O(1)
+*/
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int i =0; 
+        for(int j = 0; j < n; j++){
+            if(nums[j] != 0) nums[i++] = nums[j];
+        }
+        while(i < n){
+            nums[i++] = 0;
+        }
+    }
+};
