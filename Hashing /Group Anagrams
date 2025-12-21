@@ -1,0 +1,30 @@
+/* 
+LeetCode  49 : Group Anagrams.
+Apporach : sort Each String
+Key idea :
+Sort each string
+Anagrams become identical after sorting
+Use a hash map:
+key = sorted string
+value = list of original strings
+
+time Complexity : O(n logn n)
+Space compllexity : O(n);
+*/
+
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> mp;
+        for(auto s : strs){
+            string key = s;
+            sort(key.begin(), key.end());
+            mp[key].push_back(s);
+        }
+        vector<vector<string>> result;
+        for(auto &it : mp){
+            result.push_back(it.second);
+        }
+        return result;
+    }
+};
