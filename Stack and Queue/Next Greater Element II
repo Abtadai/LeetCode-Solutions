@@ -1,0 +1,43 @@
+/* 
+LeetCode 503 : Next Greater Element II 
+Apporach : use monotonic stack to store element from back 
+and compare if stack is not empty and top element is less than current element than pop elements from stack,until condition is not wrong.
+and just push value in stack.
+
+
+Time complexity : O(2n)
+Space Complexity : O(n).
+*/
+
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res(n, -1);
+        stack<int> st;
+
+    // Brute force apporach.
+
+    //     for(int i = 0 ; i < n; i++){
+    //         for(int j = i+1; j < i+n; j++){
+    //             int index = j  % n;
+    //             if(nums[index] > nums[i]) {
+    //                 res[i] = nums[index];
+    //                 break;
+    //             }
+    //         }
+    //     }
+
+    // by the help of monotonic stack
+        for(int i = 2 * n- 1; i >= 0; i--){
+            while(!st.empty() && st.top() <= nums[i % n]) 
+                st.pop();
+            if(i < n){
+                res[i] = st.empty() ? -1 : st.top();
+            }
+            st.push(nums[i % n]);
+        }
+
+        return res;
+    }
+};
