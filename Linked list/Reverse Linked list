@@ -1,0 +1,42 @@
+/*
+Leetcode 206 : Reverse Linked List
+
+Apporach 1 : iterative method 
+--> Time Complexity : O(n);
+--> Space complexity : O(1);
+
+Approach 2 : Recurrsive method 
+--> Time Complexity : O(n);
+--> Space Complexity : O(1);
+*/
+
+# Iterative Method 
+# class Solution {
+# public:
+#     ListNode* reverseList(ListNode* head) {
+#     ListNode* prev = nullptr;
+#     ListNode* curr = head;
+#     while(curr != nullptr){
+#         ListNode* newnode = curr->next;
+#         curr->next = prev;
+#         prev = curr;
+#         curr = newnode;
+#     }
+#     return prev;
+#     }
+# };
+
+# Recursive Method 
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+     if(head == NULL || head->next == NULL)
+       return head;
+      ListNode* newNode = reversesList(head->next);
+      listNode* front = head->next;
+      front->next = head;
+      head->next = NULL;
+
+      return newNode;
+    }
+};
