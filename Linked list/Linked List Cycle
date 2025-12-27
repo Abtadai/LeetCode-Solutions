@@ -1,0 +1,29 @@
+/*
+LeetCode 141 : Linkd List cycle.
+
+Apporach : Use two pointer, fast and slow.
+Iterate through every node , while iterating move slow by one place and fast pointer by two and
+return true if fast and slow is equal other wise false.
+
+Time Complexity : O(n) // Iterating every node atleast once.
+Space Complexity : O(1).  // we are not using any extra space.
+*/
+
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(head == NULL || head->next == NULL){
+            return false;
+        }
+        ListNode *slow = head;
+        ListNode *fast = head;
+        while(fast != nullptr && fast->next != nullptr){
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+};
