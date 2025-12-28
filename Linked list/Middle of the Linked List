@@ -1,0 +1,24 @@
+/*
+Leetcode 876 : Middle of linked list.
+
+Apporach : By fast and slow pointer.
+both point to head at starting, than move fast by two nodes and slow by only one step.
+Until fast or fast's next is not equal to NUll than return slow.
+
+Time complexity : O(n).   // Because we iterating through every node atleast once.
+Space Complexity : O(1). // not using any extra space to store anything.
+
+*/
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+       ListNode* slow = head;
+       ListNode* fast = head;
+       while(fast != nullptr && fast->next != nullptr){
+        slow = slow->next;
+        fast = fast->next->next;
+       } 
+       return slow;
+    }
+};
