@@ -1,0 +1,35 @@
+ /* 
+LeetCode 34 : Find first and last element in sorted array.
+Apporach : Apply Binary Search and than store low in result[1] = low, array and 
+again do a binary search from preveous low and new right and after that store result[2] = right.
+
+
+
+---> Time Complexity : O(log n).
+---> Space Complexity : O(1).
+*/
+
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int n = nums.size();
+        vector<int> ans(2, -1);
+        int low = 0;
+        int right = n-1;
+        while(low <= right){
+            int mid = (low + right) / 2;
+            if(nums[mid] < target) low = mid + 1;
+            else right = mid - 1;
+        }
+        if(low >= n || target != nums[low]) return {-1, -1};
+        ans[0] = low;
+        right = n -1;
+        while(low <= right){
+            int mid = (low + right) / 2;
+            if(nums[mid] <= target) low = mid+1;
+            else right = mid - 1;
+        }
+        ans[1] = right;
+        return ans;
+    }
+};
