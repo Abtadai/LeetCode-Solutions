@@ -1,0 +1,25 @@
+/*
+Leetcode 69 : Square Root
+Apporach : Use binary search .
+
+Note : use Long Long to store mid other wise it gives an error of ( Signed Intger Overflow ) .
+
+Time Complexity : O(log n).
+Space Complexity : O(1).
+*/
+
+class Solution {
+public:
+    int mySqrt(int x) {
+        int left  = 0;
+        int right = x;
+        while(left <= right){
+            long long mid = left + (right - left) / 2;
+            if(mid * mid <= x){
+                left = mid + 1;
+            }
+            else right = mid - 1;
+        }
+        return right;
+    }
+};
